@@ -1,0 +1,82 @@
+/* styles pour accueil_view.php */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+}
+footer {
+    background-color: #f1f1f1; /* Couleur de fond du footer */
+    padding: 10px;
+    text-align: center;
+}
+
+.home-page .container {
+    text-align: center;
+}
+
+.home-page .article-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.home-page .article-block {
+    width: 280px; /* Taille initiale du bloc */
+    height: 400px; /* Hauteur du bloc */
+    padding: 15px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Ombre douce */
+    transform: rotate(2deg); /* Légère rotation pour l'effet Polaroid */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.home-page .article-block:hover {
+    transform: rotate(4deg); /* Rotation supplémentaire */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Ombre plus forte */
+}
+.home-page .article-block img {
+    width: 100%;
+    height: 200px; /* Hauteur de l'image */
+    object-fit: cover; /* Garder l'image en couverture sans la déformer */
+    border-radius: 8px; /* Coins arrondis */
+    margin-bottom: 15px; /* Espacement entre l'image et le texte */
+}
+
+.home-page .article-block h3 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.home-page .article-block p {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0;
+}
+
+.home-page .article-block button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.home-page .article-block button:hover {
+    background-color: #555;
+}
+

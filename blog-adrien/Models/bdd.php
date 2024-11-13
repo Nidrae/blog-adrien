@@ -2,7 +2,7 @@
 // bdd.php - Gestion de la connexion à la base de données
 
 class Bdd {
-    private $host = 'localhost';  // Adresse du serveur de base de données
+    private $host = 'localhost:3306';  // Adresse du serveur de base de données
     private $dbname = 'Blog_adrien';  // Nom de la base de données
     private $username = 'root';  // Utilisateur de la base de données
     private $password = 'admin';  // Mot de passe de l'utilisateur
