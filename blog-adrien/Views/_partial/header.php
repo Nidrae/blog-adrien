@@ -1,19 +1,28 @@
 <!-- Views/_partial/header.php -->
 <header>
+    <?php
+    // Affichage de $_SESSION pour le débogage (à retirer en production)
+    echo "<pre>";
+    var_dump($_SESSION);
+    echo "</pre>";
+    ?>
+
     <!-- Navigation -->
     <nav>
         <ul>
+            <li><a href="index.php?ctrl=accueil&action=index">Accueil</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Travel</a></li>
             <li><a href="#">Portfolio</a></li>
-            <li>
-                <?php if (isset($_SESSION['user_id'])): ?>
-                    <a href="profile.php">Profil</a>
-                <?php else: ?>
-                    <a href="index.php?ctrl=user&action=createUser">Créer un compte</a> <!-- Lien vers la création d'utilisateur -->
-                    <a href="login.php">Connexion</a>
-                <?php endif; ?>
-            </li>
+            
+            <!-- Vérification de l'existence de l'utilisateur dans la session -->
+            <?php if (isset($_SESSION['user'])): ?>
+                <li><a href="index.php?ctrl=user&action=profileUser">Profil</a></li>
+                <li><a href="index.php?ctrl=user&action=logoutUser">Déconnexion</a></li>
+            <?php else: ?>
+                <li><a href="index.php?ctrl=user&action=createUser">Créer un compte</a></li>
+                <li><a href="index.php?ctrl=user&action=loginUser">Connexion</a></li>
+            <?php endif; ?>
         </ul>
     </nav>
 
@@ -22,9 +31,11 @@
         <h1>Blog d'Adrien</h1>
     </div>
 </header>
+
+<!-- CSS pour la navigation -->
 <style>
     header {
-        background-color: #f1f1f1; /* Gris clair */
+        background-color: #f1f1f1;
         padding: 20px;
     }
     nav ul {
