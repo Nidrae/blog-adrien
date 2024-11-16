@@ -13,8 +13,10 @@
             <li><a href="index.php?ctrl=accueil&action=index">Accueil</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Travel</a></li>
-            <li><a href="#">Portfolio</a></li>
-            
+            <li><a href="index.php?ctrl=article&action=portfolio">Portfolio</a></li>
+            <?php if (isset($_SESSION['user']) && $_SESSION['user']['is_admin'] == '1'): ?>
+            <li><a href="index.php?ctrl=article&action=createArticle">Créer un article</a></li>
+            <?php endif; ?>
             <!-- Vérification de l'existence de l'utilisateur dans la session -->
             <?php if (isset($_SESSION['user'])): ?>
                 <li><a href="index.php?ctrl=user&action=profileUser">Profil</a></li>

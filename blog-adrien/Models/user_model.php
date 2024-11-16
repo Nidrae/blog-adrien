@@ -45,7 +45,7 @@ class UserModel {
 
     public function authenticateUser($email, $mdp) {
         // Récupération des informations utilisateur
-        $query = "SELECT U_Nom, U_Prenom, U_Mail, U_Mdp, U_IsAdmin, U_IsBan FROM T_User WHERE U_Mail = ?";
+        $query = "SELECT U_ID, U_Nom, U_Prenom, U_Mail, U_Mdp, U_IsAdmin, U_IsBan FROM T_User WHERE U_Mail = ?";
         $stmt = $this->bdd->getConnexion()->prepare($query);
         $stmt->execute([$email]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);

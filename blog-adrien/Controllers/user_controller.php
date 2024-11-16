@@ -47,6 +47,7 @@ class User_Ctrl extends Ctrl {
             } elseif ($user) {
                 // Stocker les informations de l'utilisateur dans $_SESSION
                 $_SESSION['user'] = [
+                    'id' => $user['U_ID'],
                     'nom' => $user['U_Nom'],
                     'prenom' => $user['U_Prenom'],
                     'email' => $user['U_Mail'],
