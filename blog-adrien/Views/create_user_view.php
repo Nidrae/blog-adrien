@@ -8,10 +8,6 @@
     <title>Création d'un utilisateur</title>
 </head>
 <body>
-    <header>
-        <!-- Inclure le header -->
-        <?php include('views/_partial/header.php'); ?>
-    </header>
 
     <main>
         <h2>Créer un compte</h2>

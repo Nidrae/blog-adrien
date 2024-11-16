@@ -8,8 +8,10 @@
 <body>
     <h2>Connexion</h2>
     <?php if (isset($error)): ?>
-        <p style="color: red;"><?= $error; ?></p>
-    <?php endif; ?>
+    <div class="error-message">
+        <?php echo htmlspecialchars($error); ?>
+    </div>
+<?php endif; ?>
     
     <form action="index.php?ctrl=user&action=loginUser" method="post">
         <label for="email">Email :</label>
@@ -22,3 +24,10 @@
     </form>
 </body>
 </html>
+<style>
+    .error-message {
+        color: red;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+</style>

@@ -29,7 +29,7 @@ class User_Ctrl extends Ctrl {
                 $_SESSION['error_message'] = $result;
             }
         }
-        include('views/create_user_view.php');
+        $this->display("create_user_view");
     }
 
     // Authentifier l'utilisateur
@@ -37,10 +37,15 @@ class User_Ctrl extends Ctrl {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = $_POST['email'];
             $mdp = $_POST['mdp'];
-
+    
             $user = $this->userModel->authenticateUser($email, $mdp);
-
-            if ($user) {
+    
+            if ($user === 'banned') {
+                // Message pour les comptes bannis
+                $error = "Votre compte a été banni. Contactez un administrateur pour plus d'informations.";
+                $this->display("login_user_view");
+            } elseif ($user) {
+                // Stocker les informations de l'utilisateur dans $_SESSION
                 $_SESSION['user'] = [
                     'nom' => $user['U_Nom'],
                     'prenom' => $user['U_Prenom'],
@@ -50,15 +55,15 @@ class User_Ctrl extends Ctrl {
                 header("Location: index.php?ctrl=accueil&action=index");
                 exit();
             } else {
+                // Message pour un échec d'authentification
                 $error = "Email ou mot de passe incorrect";
-                include("views/login_user_view.php");
+                $this->display("login_user_view");
             }
         } else {
-            include("views/login_user_view.php");
+            $this->display("login_user_view");
         }
-
-      
     }
+    
 
     public function logoutUser() {
         // Nettoyer la session
@@ -71,16 +76,52 @@ class User_Ctrl extends Ctrl {
     }
 
     public function profileUser() {
-        // Vérifier si l'utilisateur est connecté
-        if (isset($_SESSION['user'])) {
-            // Affichage de la vue du profil
-            include("views/profile_user_view.php");
-        } else {
-            // Si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
+        if (!isset($_SESSION['user'])) {
             header("Location: index.php?ctrl=user&action=loginUser");
             exit();
         }
+    
+        // Vérifier si l'utilisateur est admin
+        $isAdmin = $this->userModel->isAdmin($_SESSION['user']['email']); // Nouvelle méthode dans le modèle
+    
+        if ($isAdmin) {
+            // Récupérer tous les utilisateurs pour la liste déroulante
+            $allUsers = $this->userModel->getAllUsers();
+            $this->_arrData['users'] = $allUsers;
+        }
+    
+        $this->_arrData['is_admin'] = $isAdmin;
+        $this->display("profile_user_view");
     }
+
+
+    public function banUser() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['user'])) {
+            $adminEmail = $_SESSION['user']['email'];
+            $userId = $_POST['user_id'];
+    
+            // Vérifier si l'utilisateur connecté est toujours administrateur
+            $isAdmin = $this->userModel->isAdmin($adminEmail);
+    
+            if ($isAdmin) {
+                $this->userModel->banUser($userId);
+                header("Location: index.php?ctrl=user&action=profileUser");
+                exit();
+            } else {
+                // Rediriger vers une vue d'erreur 405
+                $this->display("error_405");
+                exit();
+            }
+        } else {
+            // Rediriger vers la vue d'erreur si la méthode est incorrecte
+            $this->display("error_405");
+            exit();
+        }
+    }
+    
+    
+
+    
     
 }
 ?>

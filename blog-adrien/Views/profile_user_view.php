@@ -1,57 +1,35 @@
-<!-- views/profile_user_view.php -->
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil de l'utilisateur</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-    <!-- En-tête -->
-    <?php include('views/_partial/header.php'); ?>
+<h1>Profil</h1>
+<p>Nom : <?= htmlspecialchars($_SESSION['user']['nom']); ?></p>
+<p>Prénom : <?= htmlspecialchars($_SESSION['user']['prenom']); ?></p>
+<p>Email : <?= htmlspecialchars($_SESSION['user']['email']); ?></p>
 
-    <div class="profile-container">
-        <h2>Profil de l'utilisateur</h2>
-        <p><strong>Nom:</strong> <?php echo $_SESSION['user']['nom']; ?></p>
-        <p><strong>Prénom:</strong> <?php echo $_SESSION['user']['prenom']; ?></p>
-        <p><strong>Email:</strong> <?php echo $_SESSION['user']['email']; ?></p>
+<?php if ($is_admin): ?>
+    <h2>Panneau de modération</h2>
+    <form method="POST" action="index.php?ctrl=user&action=banUser">
+        <label for="user">Sélectionnez un utilisateur :</label>
+        <input type="text" id="user-search" placeholder="Rechercher un utilisateur..." oninput="filterUsers()" />
 
-        <!-- Bouton de déconnexion -->
-        <a href="index.php?ctrl=user&action=logoutUser" class="btn-deconnexion">Déconnexion</a>
-    </div>
+        <select id="user-dropdown" name="user_id" required>
+            <?php foreach ($users as $user): ?>
+                <option value="<?= htmlspecialchars($user['U_ID']); ?>">
+                    <?= htmlspecialchars($user['U_Nom'] . " " . $user['U_Prenom'] . " (" . $user['U_Mail'] . ")"); ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
 
-    <style>
-        .profile-container {
-            margin: 20px;
-            padding: 20px;
-            border: 1px solid #ddd;
-            background-color: #f9f9f9;
+        <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir bannir cet utilisateur ?')">Bannir</button>
+    </form>
+
+    <script>
+        function filterUsers() {
+            const searchInput = document.getElementById('user-search').value.toLowerCase();
+            const dropdown = document.getElementById('user-dropdown');
+            const options = dropdown.options;
+
+            for (let i = 0; i < options.length; i++) {
+                const text = options[i].textContent.toLowerCase();
+                options[i].style.display = text.includes(searchInput) ? '' : 'none';
+            }
         }
-
-        .profile-container h2 {
-            text-align: center;
-        }
-
-        .profile-container p {
-            font-size: 18px;
-        }
-
-        .profile-container .btn-deconnexion {
-            display: block;
-            width: 200px;
-            margin: 20px auto;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .profile-container .btn-deconnexion:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</body>
-</html>
+    </script>
+<?php endif; ?>
