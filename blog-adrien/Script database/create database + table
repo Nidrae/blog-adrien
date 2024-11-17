@@ -1,0 +1,64 @@
+CREATE DATABASE `Blog_adrien` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+
+-- Blog_adrien.T_Articles definition
+
+CREATE TABLE `T_Articles` (
+  `A_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `A_Titre` varchar(255) NOT NULL,
+  `A_Image` varchar(255) NOT NULL,
+  `A_Contenu` mediumtext NOT NULL,
+  `A_DateCreation` datetime NOT NULL,
+  `U_ID` int(11) NOT NULL,
+  `A_Image2` varchar(255) DEFAULT NULL,
+  `A_Image3` varchar(255) DEFAULT NULL,
+  `A_Image4` varchar(255) DEFAULT NULL,
+  `A_Image5` varchar(255) DEFAULT NULL,
+  `A_Image6` varchar(255) DEFAULT NULL,
+  `A_Image7` varchar(255) DEFAULT NULL,
+  `A_Image8` varchar(255) DEFAULT NULL,
+  `A_Image9` varchar(255) DEFAULT NULL,
+  `A_IsActif` bit(1) NOT NULL DEFAULT b'1',
+  `A_Pays` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`A_ID`),
+  KEY `T_Articles_FK` (`U_ID`),
+  CONSTRAINT `T_Articles_FK` FOREIGN KEY (`U_ID`) REFERENCES `T_User` (`U_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Blog_adrien.T_Histo_Articles definition
+
+CREATE TABLE `T_Histo_Articles` (
+  `HA_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `HA_Titre` varchar(255) NOT NULL,
+  `HA_Image` varchar(255) NOT NULL,
+  `HA_Contenu` mediumtext NOT NULL,
+  `HA_Datecreation` datetime NOT NULL,
+  `U_ID` int(11) NOT NULL,
+  `HA_Image2` varchar(255) DEFAULT NULL,
+  `HA_Image3` varchar(255) DEFAULT NULL,
+  `HA_Image4` varchar(255) DEFAULT NULL,
+  `HA_Image5` varchar(255) DEFAULT NULL,
+  `HA_Image6` varchar(255) DEFAULT NULL,
+  `HA_Image7` varchar(255) DEFAULT NULL,
+  `HA_Image8` varchar(255) DEFAULT NULL,
+  `HA_Image9` varchar(255) DEFAULT NULL,
+  `HA_Pays` varchar(100) DEFAULT NULL,
+  `A_ID` int(11) NOT NULL,
+  PRIMARY KEY (`HA_ID`),
+  KEY `T_Histo_Articles_FK` (`U_ID`),
+  KEY `T_Histo_Articles_FK_1` (`A_ID`),
+  CONSTRAINT `T_Histo_Articles_FK` FOREIGN KEY (`U_ID`) REFERENCES `T_User` (`U_ID`),
+  CONSTRAINT `T_Histo_Articles_FK_1` FOREIGN KEY (`A_ID`) REFERENCES `T_Articles` (`A_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Blog_adrien.T_User definition
+
+CREATE TABLE `T_User` (
+  `U_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `U_Nom` varchar(100) NOT NULL,
+  `U_Prenom` varchar(100) NOT NULL,
+  `U_Mail` varchar(100) NOT NULL,
+  `U_Mdp` varchar(255) NOT NULL,
+  `U_IsAdmin` bit(1) NOT NULL DEFAULT b'0',
+  `U_IsBan` bit(1) NOT NULL DEFAULT b'0',
+  PRIMARY KEY (`U_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

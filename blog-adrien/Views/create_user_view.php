@@ -31,7 +31,17 @@
             <input type="email" id="email" name="email" required><br>
 
             <label for="mdp">Mot de passe :</label>
-            <input type="password" id="mdp" name="mdp" required><br>
+            <input type="password" id="mdp" name="mdp" required>
+            <!-- Règles du mot de passe affichées lorsque l'utilisateur clique sur le champ -->
+            <div class="password-rules">
+                Le mot de passe doit contenir :
+                <ul>
+                    <li>Au moins 8 caractères</li>
+                    <li>Au moins une majuscule</li>
+                    <li>Au moins un chiffre</li>
+                    <li>Maximum 22 caractères</li>
+                </ul>
+            </div><br>
 
             <button type="submit">Créer mon compte</button>
         </form>

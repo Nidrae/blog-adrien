@@ -97,28 +97,31 @@ class User_Ctrl extends Ctrl {
 
 
     public function banUser() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['user'])) {
-            $adminEmail = $_SESSION['user']['email'];
-            $userId = $_POST['user_id'];
-    
-            // Vérifier si l'utilisateur connecté est toujours administrateur
-            $isAdmin = $this->userModel->isAdmin($adminEmail);
-    
-            if ($isAdmin) {
-                $this->userModel->banUser($userId);
-                header("Location: index.php?ctrl=user&action=profileUser");
-                exit();
-            } else {
-                // Rediriger vers une vue d'erreur 405
-                $this->display("error_405");
-                exit();
-            }
-        } else {
-            // Rediriger vers la vue d'erreur si la méthode est incorrecte
-            $this->display("error_405");
+        // Vérifier si l'utilisateur est administrateur
+        if (empty($_SESSION['user']) || $_SESSION['user']['is_admin'] != '1') {
+            header("Location: index.php");
             exit();
         }
+    
+        // Récupérer l'email de l'utilisateur à bannir
+        $userEmail = $_POST['user_email'] ?? '';
+    
+        if ($userEmail) {
+            // Rechercher l'utilisateur par email et mettre à jour le statut de bannissement
+            $banned = $this->userModel->banUserByEmail($userEmail);
+            if ($banned) {
+                $_SESSION['success_message'] = "L'utilisateur a été banni avec succès.";
+            } else {
+                $_SESSION['error_message'] = "Erreur lors du bannissement de l'utilisateur.";
+            }
+        } else {
+            $_SESSION['error_message'] = "Veuillez sélectionner un utilisateur valide.";
+        }
+    
+        // Rediriger vers la page de profil
+        header("Location: index.php?ctrl=user&action=profileUser");
     }
+    
     
     
 

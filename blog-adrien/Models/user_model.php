@@ -4,10 +4,11 @@
 require_once("models/bdd.php");
 
 class UserModel {
-    private $bdd;
+    private $pdo;
 
     public function __construct() {
-        $this->bdd = new Bdd();
+        $bdd = new Bdd();
+        $this->pdo = $bdd->getConnexion();
     }
 
     public function createUser($nom, $prenom, $email, $mdp) {
@@ -24,7 +25,7 @@ class UserModel {
 
         // Vérification de l'existence de l'email en base
         $queryCheck = "SELECT COUNT(*) FROM T_User WHERE U_Mail = ?";
-        $stmtCheck = $this->bdd->getConnexion()->prepare($queryCheck);
+        $stmtCheck = $this->pdo->prepare($queryCheck);
         $stmtCheck->execute([$email]);
         $emailExists = $stmtCheck->fetchColumn();
 
@@ -37,7 +38,7 @@ class UserModel {
 
         // Préparation de la requête d'insertion
         $queryInsert = "INSERT INTO T_User (U_Nom, U_Prenom, U_Mail, U_Mdp) VALUES (?, ?, ?, ?)";
-        $stmtInsert = $this->bdd->getConnexion()->prepare($queryInsert);
+        $stmtInsert = $this->pdo->prepare($queryInsert);
         $stmtInsert->execute([$nom, $prenom, $email, $hashedPassword]);
 
         return true;
@@ -46,14 +47,13 @@ class UserModel {
     public function authenticateUser($email, $mdp) {
         // Récupération des informations utilisateur
         $query = "SELECT U_ID, U_Nom, U_Prenom, U_Mail, U_Mdp, U_IsAdmin, U_IsBan FROM T_User WHERE U_Mail = ?";
-        $stmt = $this->bdd->getConnexion()->prepare($query);
+        $stmt = $this->pdo->prepare($query);
         $stmt->execute([$email]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
     
         if ($user) {
             if ($user['U_IsBan']) {
-                // Retourne une valeur spécifique pour les comptes bannis
-                return 'banned';
+                return 'banned'; // Indicateur pour un compte banni
             }
             // Vérification du mot de passe
             if (password_verify($mdp, $user['U_Mdp'])) {
@@ -64,26 +64,24 @@ class UserModel {
     }
 
     public function getAllUsers() {
-        $query = "SELECT U_ID, U_Nom, U_Prenom, U_Mail FROM T_User where U_isAdmin = 0";
-        $stmt = $this->bdd->getConnexion()->query($query);
+        $query = "SELECT U_ID, U_Nom, U_Prenom, U_Mail FROM T_User WHERE U_IsAdmin = 0 AND U_IsBan = 0";
+        $stmt = $this->pdo->query($query);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function banUser($userId) {
-        $query = "UPDATE T_User SET U_IsBan = 1 WHERE U_ID = ?";
-        $stmt = $this->bdd->getConnexion()->prepare($query);
-        $stmt->execute([$userId]);
-    }
-        
     
+    public function banUserByEmail($email) {
+        $query = "UPDATE T_User SET U_IsBan = 1 WHERE U_Mail = :email";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        return $stmt->execute();
+    }
 
     public function isAdmin($email) {
         $query = "SELECT U_IsAdmin FROM T_User WHERE U_Mail = ?";
-        $stmt = $this->bdd->getConnexion()->prepare($query);
+        $stmt = $this->pdo->prepare($query);
         $stmt->execute([$email]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
     
         return $result && $result['U_IsAdmin'] == 1;
     }
-    
 }
-?>

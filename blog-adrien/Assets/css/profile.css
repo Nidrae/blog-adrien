@@ -2,8 +2,8 @@
 
 /* Conteneur général pour la page de profil */
 .profile-container {
-    max-width: 90%; /* Largeur élargie pour occuper presque toute la fenêtre */
-    margin: 20px auto; /* Espace en haut et en bas */
+    width: 80%; /* Largeur fixe pour garder le conteneur à gauche */
+    margin: 20px 10%; /* Marge seulement à gauche et à droite pour l'éloigner du bord */
     padding: 20px;
     background-color: #f8f8f8;
     border: 2px solid #ffc4b0;
@@ -24,7 +24,7 @@
     font-size: 1.1em;
     color: #7a3238;
     margin: 10px 0;
-    padding-left: 15px; /* Décale légèrement les informations vers la droite */
+    padding-left: 15px;
 }
 
 /* Panneau de modération */
@@ -33,13 +33,13 @@ h2 {
     color: #bc5646;
     margin-top: 30px;
     text-align: left;
-    margin-left: 5%; /* Décalage pour l'alignement avec le bloc de profil */
+    margin-left: 10%; /* Aligne avec le bloc de profil */
 }
 
 /* Encadré du panneau de modération pour l'administrateur */
 form {
-    max-width: 90%; /* Largeur élargie */
-    margin: 20px auto; /* Espacement en haut et en bas */
+    width: 80%; /* Largeur similaire au conteneur de profil */
+    margin: 20px 10%; /* Marge gauche et droite pour aligner avec le bloc de profil */
     background-color: #f8f8f8;
     border: 2px solid #ffc4b0;
     padding: 20px;

@@ -1,18 +1,16 @@
 <?php
 
- 
-    class Ctrl {
-        // Déclarez la propriété
-        protected array $_arrData = [];
+class BaseController {
+    protected array $dataArray = [];
+
+    protected function render(string $templateName) {
     
-        protected function display(string $strTemplate) {
-            // Conversion des données du tableau en variables
-            foreach ($this->_arrData as $key => $value) {
-                $$key = $value;
-            }
-    
-            include("views/_partial/header.php");
-            include("Views/" . $strTemplate . ".php");
-            include("views/_partial/footer.php");
+        foreach ($this->dataArray as $key => $value) {
+            $$key = $value;
         }
+
+        include("views/_partial/header.php");
+        include("Views/" . $templateName . ".php");
+        include("views/_partial/footer.php");
     }
+}

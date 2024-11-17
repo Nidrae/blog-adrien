@@ -12,13 +12,13 @@ class ArticleModel {
     }
 
     public function getArticles() {
-        $query = $this->pdo->prepare("SELECT A_ID, A_Titre, A_Image, LEFT(A_Contenu, 30) AS A_Contenu, A_DateCreation FROM T_Articles ORDER BY A_ID DESC ");
+        $query = $this->pdo->prepare("SELECT A_ID, A_Titre, A_Image, LEFT(A_Contenu, 30) AS A_Contenu, A_DateCreation FROM T_Articles where A_isActif = 1 ORDER BY A_ID DESC LIMIT 3");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getAllArticlesPortfolio() {
-        $query = $this->pdo->prepare("SELECT A_ID, A_Titre, A_Image, LEFT(A_Contenu, 100) AS A_Contenu, A_DateCreation FROM T_Articles ORDER BY A_ID DESC ");
+        $query = $this->pdo->prepare("SELECT A_ID, A_Titre, A_Image, LEFT(A_Contenu, 100) AS A_Contenu, A_DateCreation FROM T_Articles where A_isActif = 1 ORDER BY A_ID DESC ");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -60,12 +60,12 @@ class ArticleModel {
     public function getArticlesByCountry($country = null) {
         if ($country) {
             // Retourne les articles pour le pays sélectionné
-            $query = "SELECT * FROM T_articles WHERE A_Pays = :country";
+            $query = "SELECT * FROM T_articles WHERE A_Pays = :country and A_isActif = 1";
             $stmt = $this->pdo->prepare($query);
             $stmt->bindParam(':country', $country);
         } else {
             // Retourne tous les articles si aucun pays n'est sélectionné
-            $query = "SELECT * FROM T_articles";
+            $query = "SELECT * FROM T_articles where A_isActif = 1";
             $stmt = $this->pdo->prepare($query);
         }
         
@@ -77,6 +77,7 @@ class ArticleModel {
         $query = $this->pdo->prepare("
             SELECT DISTINCT A_Pays 
             FROM T_Articles 
+            where A_isActif = 1
             ORDER BY A_Pays
         ");
         $query->execute();
@@ -85,7 +86,7 @@ class ArticleModel {
 
 
     public function getArticleById($id) {
-        $query = "SELECT * FROM T_articles WHERE A_ID = :id";
+        $query = "SELECT * FROM T_articles WHERE A_ID = :id and A_isActif = 1";
         $stmt = $this->pdo->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
