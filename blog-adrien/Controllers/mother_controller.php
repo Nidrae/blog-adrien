@@ -1,6 +1,6 @@
 <?php
 
-class BaseController {
+class Ctrl {
     protected array $dataArray = [];
 
     protected function render(string $templateName) {

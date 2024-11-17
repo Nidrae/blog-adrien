@@ -60,12 +60,12 @@ class ArticleModel {
     public function getArticlesByCountry($country = null) {
         if ($country) {
             // Retourne les articles pour le pays sélectionné
-            $query = "SELECT * FROM T_articles WHERE A_Pays = :country and A_isActif = 1";
+            $query = "SELECT * FROM T_articles WHERE A_Pays = :country and A_isActif = 1 order by 1 desc";
             $stmt = $this->pdo->prepare($query);
             $stmt->bindParam(':country', $country);
         } else {
             // Retourne tous les articles si aucun pays n'est sélectionné
-            $query = "SELECT * FROM T_articles where A_isActif = 1";
+            $query = "SELECT * FROM T_articles where A_isActif = 1 order by 1 desc";
             $stmt = $this->pdo->prepare($query);
         }
         
@@ -188,7 +188,5 @@ class ArticleModel {
     }
     
 
-    
-    
     
 }

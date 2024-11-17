@@ -56,11 +56,11 @@ class Article_Ctrl extends Ctrl {
                 exit();
             } catch (Exception $e) {
                 $error = $e->getMessage();
-                $this->_arrData['error'] = $error;
-                $this->display("create_article_view");
+                $this->dataArray['error'] = $error;
+                $this->render("create_article_view");
             }
         } else {
-            $this->display("create_article_view");
+            $this->render("create_article_view");
         }
     }
 
@@ -75,12 +75,12 @@ class Article_Ctrl extends Ctrl {
         $articles = $this->articleModel->getArticlesByCountry($selectedCountry);
     
         // Passer les données à la vue
-        $this->_arrData['countries'] = $countries;
-        $this->_arrData['articles'] = $articles;
-        $this->_arrData['selectedCountry'] = $selectedCountry;
+        $this->dataArray['countries'] = $countries;
+        $this->dataArray['articles'] = $articles;
+        $this->dataArray['selectedCountry'] = $selectedCountry;
         
         // Charger la vue "portfolio_view"
-        $this->display("portfolio_view");
+        $this->render("portfolio_view");
     }
 
     public function viewArticle() {
@@ -92,8 +92,8 @@ class Article_Ctrl extends Ctrl {
             $article = $this->articleModel->getArticleById($articleId);
             if ($article) {
                 // Passer les données de l'article à la vue
-                $this->_arrData['article'] = $article;
-                $this->display("article_view");
+                $this->dataArray['article'] = $article;
+                $this->render("article_view");
             } else {
                 // Article non trouvé
                 echo "Article introuvable.";
@@ -108,7 +108,7 @@ class Article_Ctrl extends Ctrl {
     public function deleteArticle() {
         // Vérifier si l'utilisateur est connecté et administrateur
         if (empty($_SESSION['user']) || $_SESSION['user']['is_admin'] !== 1) {
-            header("Location: index.php");
+            header("Location: index.php?ctrl=accueil&action=index");
             exit;
         }
     
@@ -134,7 +134,7 @@ class Article_Ctrl extends Ctrl {
     {
         // Vérifier si l'utilisateur est administrateur
         if (empty($_SESSION['user']) || $_SESSION['user']['is_admin'] !== 1) {
-            header("Location: index.php");
+            header("Location: index.php?ctrl=accueil&action=index");
             exit;
         }
     
@@ -154,8 +154,8 @@ class Article_Ctrl extends Ctrl {
                 }
     
                 // Passer les données de l'article à la vue
-                $this->_arrData['article'] = $article;
-                $this->display("update_article_view");
+                $this->dataArray['article'] = $article;
+                $this->render("update_article_view");
             } else {
                 echo "Article introuvable.";
             }
@@ -170,7 +170,7 @@ class Article_Ctrl extends Ctrl {
     {
         // Vérification utilisateur administrateur
         if (empty($_SESSION['user']) || $_SESSION['user']['is_admin'] !== 1) {
-            header("Location: index.php");
+            header("Location: index.php?ctrl=accueil&action=index");
             exit;
         }
     

@@ -29,7 +29,7 @@ class User_Ctrl extends Ctrl {
                 $_SESSION['error_message'] = $result;
             }
         }
-        $this->display("create_user_view");
+        $this->render("create_user_view");
     }
 
     // Authentifier l'utilisateur
@@ -43,7 +43,7 @@ class User_Ctrl extends Ctrl {
             if ($user === 'banned') {
                 // Message pour les comptes bannis
                 $error = "Votre compte a été banni. Contactez un administrateur pour plus d'informations.";
-                $this->display("login_user_view");
+                $this->render("login_user_view");
             } elseif ($user) {
                 // Stocker les informations de l'utilisateur dans $_SESSION
                 $_SESSION['user'] = [
@@ -58,10 +58,10 @@ class User_Ctrl extends Ctrl {
             } else {
                 // Message pour un échec d'authentification
                 $error = "Email ou mot de passe incorrect";
-                $this->display("login_user_view");
+                $this->render("login_user_view");
             }
         } else {
-            $this->display("login_user_view");
+            $this->render("login_user_view");
         }
     }
     
@@ -88,18 +88,18 @@ class User_Ctrl extends Ctrl {
         if ($isAdmin) {
             // Récupérer tous les utilisateurs pour la liste déroulante
             $allUsers = $this->userModel->getAllUsers();
-            $this->_arrData['users'] = $allUsers;
+            $this->dataArray['users'] = $allUsers;
         }
     
-        $this->_arrData['is_admin'] = $isAdmin;
-        $this->display("profile_user_view");
+        $this->dataArray['is_admin'] = $isAdmin;
+        $this->render("profile_user_view");
     }
 
 
     public function banUser() {
         // Vérifier si l'utilisateur est administrateur
         if (empty($_SESSION['user']) || $_SESSION['user']['is_admin'] != '1') {
-            header("Location: index.php");
+            header("Location: index.php?ctrl=accueil&action=index");
             exit();
         }
     

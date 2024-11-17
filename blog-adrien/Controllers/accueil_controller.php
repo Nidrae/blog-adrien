@@ -4,15 +4,15 @@ require_once("models/article_model.php");
 
 class Accueil_Ctrl extends Ctrl {
     public function index() {
-        $this->_arrData['strPage']	    = "Acceuil";
+        $this->dataArray['strPage']	    = "Acceuil";
         $model = new ArticleModel();
-        $this->_arrData['articles'] = $model->getArticles();
-        $this->display("accueil_view");
+        $this->dataArray['articles'] = $model->getArticles();
+        $this->render("accueil_view");
         
     }
 
     public function about() {
-        $this->display("about_view");
+        $this->render("about_view");
     }
 }
 ?>

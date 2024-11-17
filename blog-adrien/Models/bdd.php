@@ -27,9 +27,5 @@ class Bdd {
         return $this->pdo;
     }
 
-    // Méthode pour fermer la connexion
-    public function closeConnexion() {
-        $this->pdo = null;
-    }
 }
 ?>

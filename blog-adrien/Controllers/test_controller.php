@@ -4,7 +4,7 @@
 class Test_Ctrl extends Ctrl {
     public function index() {
         // Exemple de données à passer à la vue
-        $this->_arrData['message'] = "Bienvenue sur le blog!";
+        $this->dataArray['message'] = "Bienvenue sur le blog!";
         
         // Récupérer les articles depuis la base de données
         require_once('models/bdd.php');
@@ -16,10 +16,10 @@ class Test_Ctrl extends Ctrl {
         $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         // Passer les articles à la vue
-        $this->_arrData['articles'] = $articles;
+        $this->dataArray['articles'] = $articles;
         
         // Afficher la vue
-        $this->display('test_view');
+        $this->render('test_view');
 
     }
 }
