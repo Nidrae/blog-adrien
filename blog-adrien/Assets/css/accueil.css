@@ -1,0 +1,88 @@
+/* Fichier: Assets/css/accueil.css */
+
+/* Style général de la page d'accueil */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Grille des articles */
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Trois colonnes pour les grands écrans */
+    gap: 20px;
+}
+
+.article-block {
+    background-color: #f8f8f8;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s;
+    border: 2px solid #ffc4b0; /* Contour pour l’effet polaroid */
+    position: relative;
+}
+
+/* Animation légère au survol */
+.article-block:hover {
+    transform: scale(1.03);
+}
+
+/* Style de l'image */
+.article-block img {
+    width: 100%;
+    height: auto;
+    border-bottom: 3px solid #ffc4b0;
+    margin-bottom: 10px;
+    transition: opacity 0.3s;
+}
+
+/* Titre de l'article */
+.article-block h3 {
+    font-size: 1.2em;
+    color: #491b1c;
+    margin: 10px 0;
+}
+
+/* Contenu de l'article */
+.article-block p {
+    font-size: 0.9em;
+    color: #7a3238;
+}
+
+/* Bouton "Lire l'article" */
+.article-block button {
+    background-color: #ed8c72;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    font-size: 0.9em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.article-block button:hover {
+    background-color: #bc5646;
+}
+
+/* Responsivité */
+@media (max-width: 992px) {
+    .article-grid {
+        grid-template-columns: repeat(2, 1fr); /* Deux colonnes pour les écrans moyens */
+    }
+}
+
+@media (max-width: 600px) {
+    .article-grid {
+        grid-template-columns: 1fr; /* Une colonne pour les petits écrans */
+    }
+
+    .article-block {
+        margin: 0 auto; /* Centrer le bloc sur petit écran */
+        width: 90%;
+    }
+}

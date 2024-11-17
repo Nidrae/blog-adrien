@@ -1,0 +1,40 @@
+/* Fichier : Assets/css/style.css */
+
+/* Style général pour la structure de la page */
+html, body {
+    height: 100%; /* Assure que la page prend toute la hauteur de la fenêtre */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Conteneur principal (wrapper) pour le contenu de la page */
+main {
+    flex: 1; /* Prend tout l'espace disponible avant le footer */
+}
+
+/* Style du footer */
+footer {
+    background-color: #491b1c; /* Couleur de fond sombre */
+    color: #fff; /* Texte en blanc pour un bon contraste */
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9em;
+    border-top: 3px solid #ffc4b0; /* Bordure supérieure pour démarquer */
+    margin-top: auto; /* Assure que le footer reste en bas même si le contenu est court */
+}
+
+/* Texte du footer */
+footer p {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Style responsive */
+@media (max-width: 600px) {
+    footer {
+        font-size: 0.8em; /* Réduit la taille du texte sur petits écrans */
+        padding: 15px 0;
+    }
+}

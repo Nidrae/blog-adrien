@@ -1,0 +1,149 @@
+/* Fichier : Assets/css/article.css */
+
+/* Conteneur principal pour l'article */
+.article-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 2px solid #ffc4b0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre de l'article */
+.article-container h1 {
+    font-size: 2em;
+    color: #491b1c;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Conteneur de l'image principale */
+.main-image {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.main-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 3px solid #ffc4b0;
+    cursor: pointer; /* Indique que l'image est cliquable */
+    transition: transform 0.3s;
+}
+
+.main-image img:hover {
+    transform: scale(1.05);
+}
+
+/* Contenu (description) de l'article */
+.article-container p {
+    font-size: 1.1em;
+    color: #7a3238;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    text-align: justify;
+}
+
+/* Grille des images supplémentaires */
+.additional-images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Trois colonnes */
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.additional-images .image {
+    text-align: center;
+}
+
+.additional-images img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 2px solid #e0d9d8;
+    cursor: pointer; /* Indique que l'image est cliquable */
+    transition: transform 0.3s;
+}
+
+.additional-images img:hover {
+    transform: scale(1.05);
+}
+
+/* Conteneur de la lightbox */
+.lightbox {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+}
+
+.lightbox-image {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+}
+
+.lightbox .close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2em;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Boutons d'actions pour l'administrateur */
+.admin-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.admin-actions .btn {
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.admin-actions .btn-primary {
+    background-color: #ed8c72;
+    color: #fff;
+}
+
+.admin-actions .btn-primary:hover {
+    background-color: #bc5646;
+}
+
+.admin-actions .btn-danger {
+    background-color: #f44336;
+    color: #fff;
+}
+
+.admin-actions .btn-danger:hover {
+    background-color: #d32f2f;
+}
+
+/* Responsivité */
+@media (max-width: 600px) {
+    .article-container {
+        width: 90%; /* Presque toute la largeur de l'écran sur mobile */
+    }
+
+    .additional-images {
+        grid-template-columns: 1fr; /* Une colonne pour petits écrans */
+    }
+}

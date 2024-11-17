@@ -1,0 +1,114 @@
+/* Fichier : Assets/css/profile.css */
+
+/* Conteneur général pour la page de profil */
+.profile-container {
+    max-width: 90%; /* Largeur élargie pour occuper presque toute la fenêtre */
+    margin: 20px auto; /* Espace en haut et en bas */
+    padding: 20px;
+    background-color: #f8f8f8;
+    border: 2px solid #ffc4b0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Aligne le texte à gauche */
+}
+
+/* Titre de la page de profil */
+.profile-container h1 {
+    font-size: 2em;
+    color: #491b1c;
+    margin-bottom: 20px;
+}
+
+/* Informations du profil */
+.profile-container p {
+    font-size: 1.1em;
+    color: #7a3238;
+    margin: 10px 0;
+    padding-left: 15px; /* Décale légèrement les informations vers la droite */
+}
+
+/* Panneau de modération */
+h2 {
+    font-size: 1.8em;
+    color: #bc5646;
+    margin-top: 30px;
+    text-align: left;
+    margin-left: 5%; /* Décalage pour l'alignement avec le bloc de profil */
+}
+
+/* Encadré du panneau de modération pour l'administrateur */
+form {
+    max-width: 90%; /* Largeur élargie */
+    margin: 20px auto; /* Espacement en haut et en bas */
+    background-color: #f8f8f8;
+    border: 2px solid #ffc4b0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* Style pour les labels et les champs de saisie */
+form label {
+    font-size: 1em;
+    color: #7a3238;
+    display: block;
+    margin-bottom: 10px;
+    padding-left: 5px;
+}
+
+#user-search {
+    width: calc(100% - 20px);
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #e0d9d8;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+#user-dropdown {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #e0d9d8;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+/* Bouton de soumission */
+button[type="submit"] {
+    background-color: #ed8c72;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #bc5646;
+}
+
+/* Style responsive */
+@media (max-width: 600px) {
+    .profile-container,
+    form {
+        width: 95%; /* Utilise presque toute la largeur de l'écran sur mobile */
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    #user-search,
+    #user-dropdown {
+        width: 100%;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+    }
+}

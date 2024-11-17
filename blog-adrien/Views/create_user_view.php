@@ -1,15 +1,13 @@
-<!-- views/create_user_view.php -->
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Création d'un utilisateur</title>
+    <link rel="stylesheet" href="Assets/css/create_user.css">
 </head>
 <body>
-
-    <main>
+    <main id="create-user-page">
         <h2>Créer un compte</h2>
 
         <!-- Affichage des messages d'erreur ou de succès -->

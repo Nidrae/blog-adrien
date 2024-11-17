@@ -1,0 +1,68 @@
+/* Fichier : Assets/css/about.css */
+
+/* Conteneur principal pour la page À propos */
+.about-container {
+    max-width: 800px; /* Largeur maximale pour un texte confortable à lire */
+    margin: 50px auto; /* Centré avec espacement au-dessus */
+    padding: 20px;
+    background-color: #fff;
+    border: 2px solid #ffc4b0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    line-height: 1.6;
+}
+
+/* Titre principal */
+.about-container h1 {
+    font-size: 2.5em;
+    color: #491b1c;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Paragraphe de texte */
+.about-container p {
+    font-size: 1.1em;
+    color: #7a3238;
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+/* Sous-titre pour la section Contact */
+.about-container h2 {
+    font-size: 1.8em;
+    color: #bc5646;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+/* Lien de contact */
+.about-container a {
+    color: #ed8c72;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.about-container a:hover {
+    color: #bc5646;
+    text-decoration: underline;
+}
+
+/* Style responsive */
+@media (max-width: 600px) {
+    .about-container {
+        width: 90%; /* Presque toute la largeur de l'écran sur mobile */
+    }
+
+    .about-container h1 {
+        font-size: 2em;
+    }
+
+    .about-container h2 {
+        font-size: 1.5em;
+    }
+
+    .about-container p {
+        font-size: 1em;
+    }
+}

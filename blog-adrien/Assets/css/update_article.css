@@ -1,0 +1,103 @@
+/* Fichier : Assets/css/edit_article.css */
+
+/* Style général pour la page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+}
+
+/* Conteneur principal pour le formulaire de modification d'article */
+main {
+    max-width: 700px; /* Largeur du conteneur */
+    margin: 50px auto; /* Centré avec espacement au-dessus */
+    padding: 20px;
+    background-color: #fff;
+    border: 2px solid #ffc4b0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre de la page */
+main h1 {
+    font-size: 2em;
+    color: #491b1c;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Message d'erreur */
+.error-message {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+/* Style du formulaire */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligne les éléments du formulaire à gauche */
+    text-align: left;
+}
+
+form label {
+    font-size: 1em;
+    color: #7a3238;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+form input[type="text"],
+form input[type="file"],
+form textarea {
+    width: 80%; /* Limite la largeur des champs à 80% du conteneur */
+    max-width: 500px; /* Largeur maximale des champs */
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #e0d9d8;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+form textarea {
+    resize: vertical; /* Permet à l'utilisateur de redimensionner verticalement */
+}
+
+/* Bouton de soumission */
+form button[type="submit"] {
+    background-color: #ed8c72;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+form button[type="submit"]:hover {
+    background-color: #bc5646;
+}
+
+/* Style responsive */
+@media (max-width: 600px) {
+    main {
+        width: 90%; /* Presque toute la largeur de l'écran sur mobile */
+    }
+
+    form input[type="text"],
+    form input[type="file"],
+    form textarea {
+        width: 100%; /* Pleine largeur sur petits écrans */
+        max-width: 100%;
+    }
+}

@@ -1,0 +1,45 @@
+/* Fichier: Assets/css/header.css */
+
+/* Style général pour le header */
+#site-header {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8; /* Ton clair et sobre */
+    padding: 20px;
+    width: 100%; /* Prend toute la largeur de la page */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Style pour la bannière */
+#site-header .banner {
+    text-align: center;
+    padding: 15px 0;
+    background-color: #ffc4b0; /* Couleur claire de la palette */
+}
+
+#site-header .banner h1 {
+    font-size: 2.5em;
+    color: #491b1c; /* Couleur foncée de la palette */
+    margin: 0;
+}
+
+/* Style pour la barre de navigation */
+#site-header nav ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0;
+}
+
+#site-header nav ul li a {
+    text-decoration: none;
+    color: #7a3238; /* Ton doux de la palette */
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#site-header nav ul li a:hover {
+    background-color: #ed8c72; /* Légère couleur de fond sur le survol */
+    color: #fff; /* Couleur du texte en survol */
+}

@@ -1,5 +1,6 @@
 <!-- views/login_user_view.php -->
 <!DOCTYPE html>
+<link rel="stylesheet" href="Assets/css/login.css">
 <html lang="fr">
 <head>
     <meta charset="UTF-8">

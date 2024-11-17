@@ -1,4 +1,5 @@
 <div class="portfolio-container">
+<link rel="stylesheet" href="Assets/css/portfolio.css">
     <h1>Portfolio</h1>
     <form method="POST" action="">
         <label for="country-filter">Filtrer par pays :</label>
@@ -22,7 +23,7 @@
                     <img src="assets/images/<?= htmlspecialchars($article['A_Image'] ?? 'default.jpg') ?>" alt="<?= htmlspecialchars($article['A_Titre'] ?? 'Image indisponible') ?>">
                     <h2><?= htmlspecialchars($article['A_Titre'] ?? 'Titre indisponible') ?></h2>
                     <p><?= htmlspecialchars(substr($article['A_Contenu'] ?? '', 0, 30)) ?>...</p>
-                    <a href="index.php?ctrl=article&action=view&id=<?= $article['A_ID'] ?>">Lire l'article</a>
+                    <a href="index.php?ctrl=article&action=viewArticle&id=<?= $article['A_ID'] ?>">Lire l'article</a>
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>

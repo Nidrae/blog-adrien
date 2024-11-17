@@ -8,5 +8,9 @@ class Accueil_Ctrl extends Ctrl {
         $this->_arrData['articles'] = $model->getArticles();
         $this->display("accueil_view");
     }
+
+    public function about() {
+        $this->display("about_view");
+    }
 }
 ?>

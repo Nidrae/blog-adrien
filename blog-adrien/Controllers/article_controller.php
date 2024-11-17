@@ -82,6 +82,135 @@ class Article_Ctrl extends Ctrl {
         // Charger la vue "portfolio_view"
         $this->display("portfolio_view");
     }
+
+    public function viewArticle() {
+        // Récupérer l'ID de l'article depuis les paramètres de la requête
+        $articleId = isset($_GET['id']) ? intval($_GET['id']) : null;
     
+        if ($articleId) {
+            // Récupérer les données de l'article correspondant
+            $article = $this->articleModel->getArticleById($articleId);
+            if ($article) {
+                // Passer les données de l'article à la vue
+                $this->_arrData['article'] = $article;
+                $this->display("article_view");
+            } else {
+                // Article non trouvé
+                echo "Article introuvable.";
+            }
+        } else {
+            // Redirection si aucun ID n'est fourni
+            header("Location: index.php?ctrl=article&action=portfolio");
+            exit;
+        }
+    }
+    
+    public function deleteArticle() {
+        // Vérifier si l'utilisateur est connecté et administrateur
+        if (empty($_SESSION['user']) || $_SESSION['user']['is_admin'] !== 1) {
+            header("Location: index.php");
+            exit;
+        }
+    
+        // Récupérer l'ID de l'article depuis l'URL
+        $articleId = isset($_GET['id']) ? intval($_GET['id']) : null;
+    
+        if ($articleId) {
+            // Supprimer l'article via le modèle
+            $deleted = $this->articleModel->deleteArticleById($articleId);
+            if ($deleted) {
+                header("Location: index.php?ctrl=article&action=portfolio&msg=deleted");
+            } else {
+                echo "Erreur lors de la suppression de l'article.";
+            }
+        } else {
+            header("Location: index.php?ctrl=article&action=portfolio");
+        }
+        exit;
+    }
+
+    
+    public function updateArticle()
+    {
+        // Vérifier si l'utilisateur est administrateur
+        if (empty($_SESSION['user']) || $_SESSION['user']['is_admin'] !== 1) {
+            header("Location: index.php");
+            exit;
+        }
+    
+        // Récupérer l'ID de l'article depuis l'URL
+        $articleId = isset($_GET['id']) ? intval($_GET['id']) : null;
+    
+        if ($articleId) {
+            // Récupérer l'article actuel
+            $article = $this->articleModel->getArticleById($articleId);
+    
+            if ($article) {
+                // Sauvegarder l'article dans l'historique
+                $historySaved = $this->articleModel->saveArticleToHistory($article);
+                if (!$historySaved) {
+                    echo "Erreur lors de la sauvegarde de l'article dans l'historique.";
+                    exit;
+                }
+    
+                // Passer les données de l'article à la vue
+                $this->_arrData['article'] = $article;
+                $this->display("update_article_view");
+            } else {
+                echo "Article introuvable.";
+            }
+        } else {
+            header("Location: index.php?ctrl=article&action=portfolio");
+        }
+    }
+    
+
+    
+    public function saveArticle()
+    {
+        // Vérification utilisateur administrateur
+        if (empty($_SESSION['user']) || $_SESSION['user']['is_admin'] !== 1) {
+            header("Location: index.php");
+            exit;
+        }
+    
+        // Préparation des données de l'article
+        $articleData = [
+            'A_ID' => $_POST['A_ID'],
+            'A_Titre' => $_POST['A_Titre'],
+            'A_Contenu' => $_POST['A_Contenu'],
+            'A_Pays' => $_POST['A_Pays'],
+        ];
+    
+        // Gestion des fichiers (image principale)
+        $articleData['A_Image'] = !empty($_FILES['A_Image']['name']) 
+            ? $_FILES['A_Image']['name'] 
+            : $_POST['old_A_Image'];
+    
+        // Gestion des fichiers (images optionnelles)
+        for ($i = 2; $i <= 9; $i++) {
+            $fileKey = 'A_Images'; // Nom des fichiers envoyés en tableau
+            $oldKey = "old_A_Image$i"; // Ancienne valeur de l'image
+            $articleData["A_Image$i"] = !empty($_FILES[$fileKey]['name'][$i - 2]) 
+                ? $_FILES[$fileKey]['name'][$i - 2] 
+                : ($_POST[$oldKey] ?? null); // Utilise l'ancienne valeur si aucune nouvelle n'est fournie
+        }
+    
+        // Sauvegarde l'article dans l'historique avant mise à jour
+        $this->articleModel->saveArticleToHistory($articleData['A_ID']);
+    
+        // Met à jour l'article avec les nouvelles données
+        $updated = $this->articleModel->updateArticle($articleData);
+    
+        if ($updated) {
+            header("Location: index.php?ctrl=article&action=portfolio&msg=updated");
+        } else {
+            echo "Erreur lors de la mise à jour de l'article.";
+        }
+        exit;
+    }
+    
+
+
 
 }
