@@ -1,7 +1,7 @@
 /* Conteneur principal pour la page À propos */
 .about-container {
-    max-width: 800px; /* Largeur maximale pour un texte confortable à lire */
-    margin: 50px auto; /* Centré avec espacement au-dessus */
+    max-width: 800px; 
+    margin: 50px auto; 
     padding: 20px;
     background-color: #fff;
     border: 2px solid #ffc4b0;
@@ -49,7 +49,7 @@
 /* Style responsive */
 @media (max-width: 600px) {
     .about-container {
-        width: 90%; /* Presque toute la largeur de l'écran sur mobile */
+        width: 90%; 
     }
 
     .about-container h1 {

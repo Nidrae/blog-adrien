@@ -20,7 +20,6 @@
             required
         />
 
-        <!-- Liste de suggestions d'utilisateurs -->
         <datalist id="user-list">
             <?php foreach ($users as $user): ?>
                 <option value="<?= htmlspecialchars($user['U_Mail']); ?>">

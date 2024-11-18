@@ -1,7 +1,7 @@
 
 /* Style général pour la structure de la page */
 html, body {
-    height: 100%; /* Assure que la page prend toute la hauteur de la fenêtre */
+    height: 100%;
     margin: 0;
     padding: 0;
     display: flex;
@@ -10,18 +10,18 @@ html, body {
 
 /* Conteneur principal (wrapper) pour le contenu de la page */
 main {
-    flex: 1; /* Prend tout l'espace disponible avant le footer */
+    flex: 1; 
 }
 
 /* Style du footer */
 footer {
-    background-color: #491b1c; /* Couleur de fond sombre */
-    color: #fff; /* Texte en blanc pour un bon contraste */
+    background-color: #491b1c;
+    color: #fff;
     padding: 20px 0;
     text-align: center;
     font-size: 0.9em;
-    border-top: 3px solid #ffc4b0; /* Bordure supérieure pour démarquer */
-    margin-top: auto; /* Assure que le footer reste en bas même si le contenu est court */
+    border-top: 3px solid #ffc4b0; 
+    margin-top: auto; 
 }
 
 /* Texte du footer */
@@ -33,7 +33,7 @@ footer p {
 /* Style responsive */
 @media (max-width: 600px) {
     footer {
-        font-size: 0.8em; /* Réduit la taille du texte sur petits écrans */
+        font-size: 0.8em;
         padding: 15px 0;
     }
 }

@@ -8,7 +8,7 @@
 /* Grille des articles */
 .article-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Trois colonnes pour les grands écrans */
+    grid-template-columns: repeat(3, 1fr); 
     gap: 20px;
 }
 
@@ -20,7 +20,7 @@
     text-align: center;
     overflow: hidden;
     transition: transform 0.3s;
-    border: 2px solid #ffc4b0; /* Contour pour l’effet polaroid */
+    border: 2px solid #ffc4b0; 
     position: relative;
 }
 
@@ -70,17 +70,17 @@
 /* Responsivité */
 @media (max-width: 992px) {
     .article-grid {
-        grid-template-columns: repeat(2, 1fr); /* Deux colonnes pour les écrans moyens */
+        grid-template-columns: repeat(2, 1fr); 
     }
 }
 
 @media (max-width: 600px) {
     .article-grid {
-        grid-template-columns: 1fr; /* Une colonne pour les petits écrans */
+        grid-template-columns: 1fr; 
     }
 
     .article-block {
-        margin: 0 auto; /* Centrer le bloc sur petit écran */
+        margin: 0 auto; 
         width: 90%;
     }
 }

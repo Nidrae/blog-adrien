@@ -8,22 +8,22 @@ body {
 
 /* Style du conteneur principal */
 main {
-    max-width: 700px; /* Largeur élargie pour un conteneur plus spacieux */
+    max-width: 700px;
     width: 1000px;
-    margin: 50px auto; /* Centré et espacé du header */
+    margin: 50px auto; 
     padding: 20px;
     background-color: #fff;
     border: 2px solid #ffc4b0;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: left; /* Aligne le texte à gauche */
+    text-align: left; 
 }
 
 /* Titre de la page */
 main h2 {
     font-size: 1.8em;
     color: #491b1c;
-    text-align: left; /* Aligne le titre à gauche */
+    text-align: left;
     margin-bottom: 20px;
 }
 
@@ -33,7 +33,7 @@ main h2 {
     margin-bottom: 15px;
     border-radius: 5px;
     font-weight: bold;
-    text-align: left; /* Aligne les messages à gauche */
+    text-align: left; 
 }
 
 .error {
@@ -92,6 +92,6 @@ form button[type="submit"]:hover {
 /* Responsivité */
 @media (max-width: 600px) {
     main {
-        width: 90%; /* Presque toute la largeur pour petits écrans */
+        width: 90%; 
     }
 }

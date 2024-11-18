@@ -9,8 +9,8 @@ body {
 
 /* Conteneur principal pour le formulaire de connexion */
 main {
-    max-width: 500px; /* Largeur du conteneur */
-    margin: 50px auto; /* Centré avec espacement au-dessus */
+    max-width: 500px; 
+    margin: 50px auto; 
     padding: 20px;
     background-color: #fff;
     border: 2px solid #ffc4b0;
@@ -82,6 +82,6 @@ form button[type="submit"]:hover {
 /* Style responsive */
 @media (max-width: 600px) {
     main {
-        width: 90%; /* Presque toute la largeur de l'écran sur mobile */
+        width: 90%; 
     }
 }

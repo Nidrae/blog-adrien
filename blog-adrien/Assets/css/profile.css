@@ -1,14 +1,14 @@
 
 /* Conteneur général pour la page de profil */
 .profile-container {
-    width: 80%; /* Largeur fixe pour garder le conteneur à gauche */
-    margin: 20px 10%; /* Marge seulement à gauche et à droite pour l'éloigner du bord */
+    width: 80%;
+    margin: 20px 10%; 
     padding: 20px;
     background-color: #f8f8f8;
     border: 2px solid #ffc4b0;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: left; /* Aligne le texte à gauche */
+    text-align: left; 
 }
 
 /* Titre de la page de profil */
@@ -32,13 +32,13 @@ h2 {
     color: #bc5646;
     margin-top: 30px;
     text-align: left;
-    margin-left: 10%; /* Aligne avec le bloc de profil */
+    margin-left: 10%; 
 }
 
 /* Encadré du panneau de modération pour l'administrateur */
 form {
-    width: 80%; /* Largeur similaire au conteneur de profil */
-    margin: 20px 10%; /* Marge gauche et droite pour aligner avec le bloc de profil */
+    width: 80%; 
+    margin: 20px 10%; 
     background-color: #f8f8f8;
     border: 2px solid #ffc4b0;
     padding: 20px;
@@ -94,7 +94,7 @@ button[type="submit"]:hover {
 @media (max-width: 600px) {
     .profile-container,
     form {
-        width: 95%; /* Utilise presque toute la largeur de l'écran sur mobile */
+        width: 95%;
         margin: 0 auto;
     }
 

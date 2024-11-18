@@ -28,7 +28,7 @@
     height: auto;
     border-radius: 10px;
     border: 3px solid #ffc4b0;
-    cursor: pointer; /* Indique que l'image est cliquable */
+    cursor: pointer; 
     transition: transform 0.3s;
 }
 
@@ -48,7 +48,7 @@
 /* Grille des images supplémentaires */
 .additional-images {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Trois colonnes */
+    grid-template-columns: repeat(3, 1fr); 
     gap: 15px;
     margin-top: 20px;
 }
@@ -62,7 +62,7 @@
     height: auto;
     border-radius: 8px;
     border: 2px solid #e0d9d8;
-    cursor: pointer; /* Indique que l'image est cliquable */
+    cursor: pointer; 
     transition: transform 0.3s;
 }
 
@@ -138,10 +138,10 @@
 /* Responsivité */
 @media (max-width: 600px) {
     .article-container {
-        width: 90%; /* Presque toute la largeur de l'écran sur mobile */
+        width: 90%; 
     }
 
     .additional-images {
-        grid-template-columns: 1fr; /* Une colonne pour petits écrans */
+        grid-template-columns: 1fr; 
     }
 }
